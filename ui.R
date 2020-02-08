@@ -17,20 +17,31 @@ shinyUI(fluidPage(
 
   # Sidebar with a slider input for number of bins
   # sidebarLayout(
-  #     sidebarPanel(
-  #         sliderInput("bins",
-  #                     "Number of bins:",
-  #                     min = 1,
-  #                     max = 50,
-  #                     value = 30)
-  #     ),
+  #   sidebarPanel(
+  #
+  #   ),
 
-  # Show a plot of the generated distribution
-  mainPanel(
+    # Show a plot of the generated distribution
+    mainPanel(
+      fluidRow(
+        column(
+          3,
+          shinyWidgets::pickerInput(
+            "stat",
+            label = "Select Stat:",
+            choices = stat_choices,
+            selected = "currentWinStreak"
+          )
+        )
+      ),
 
-    DT::dataTableOutput("table")
+      fluidRow(
+        shiny::uiOutput("valboxes")
+      ),
 
-    # plotOutput("distPlot")
+      DT::dataTableOutput("table")
+
+      # plotOutput("distPlot")
+    )
   )
-)
 )

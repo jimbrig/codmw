@@ -42,6 +42,8 @@ get_data <- function(url) {
 
 }
 
+stat_choices <- names(get_data(urls[1]))
+
 #
 #
 #

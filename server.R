@@ -36,4 +36,24 @@ shinyServer(function(input, output, session) {
       DT::formatRound(1:3, 2)
   })
 
+
+
+  output$valboxes <- shiny::renderUI({
+
+    vals <- data() %>%
+      filter(stat == input$stat) %>%
+      slice(1)
+
+    fluidRow(
+      column(4,
+             shinydashboard::valueBox(vals[1], subtitle = gamertags[1], icon = shiny::icon("gamepad"))
+      ),
+      column(4,
+             shinydashboard::valueBox(vals[2], subtitle = gamertags[2], icon = shiny::icon("gamepad"))
+      ),
+      column(4,
+             shinydashboard::valueBox(vals[3], subtitle = gamertags[3], icon = shiny::icon("gamepad"))
+      )
+    )
+  })
 })
