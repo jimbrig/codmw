@@ -24,6 +24,7 @@ library(DT)
 # library(formattable)
 library(curl)
 library(httr)
+library(stringr)
 
 gamertags <- c("wherethenoobsat", "munchinxbox69", "BIJO44")
 

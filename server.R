@@ -14,6 +14,8 @@ shinyServer(function(input, output, session) {
 
   data <- reactive({
 
+    # browser()
+
     map_dfr(urls, get_data) %>%
       # tibble::add_column("gamer" = gamertags) %>%
       # select(gamer, everything()) %>%
@@ -21,7 +23,8 @@ shinyServer(function(input, output, session) {
       as_tibble(rownames = NA) %>%
       tibble::rownames_to_column("Stat") %>%
       set_names(c("stat", gamertags)) %>%
-      as_tibble()
+      as_tibble() %>%
+      mutate(stat = camel_2_title(stat))
 
   })
 
