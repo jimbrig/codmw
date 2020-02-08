@@ -1,0 +1,13 @@
+name: codmw
+title: codmw
+username:
+account: jimbrig2011
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1780561
+bundleId: 2784112
+url: https://jimbrig2011.shinyapps.io/codmw/
+when: 1581138255.74523
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: config.yaml|README.md|R/devhist.R|www/custom-js.js|www/mystyles.css
