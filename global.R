@@ -22,6 +22,7 @@ library(tidyr)
 library(tibble)
 library(DT)
 # library(formattable)
+library(curl)
 
 gamertags <- c("wherethenoobsat", "munchinxbox69", "BIJO44")
 
