@@ -1,18 +1,18 @@
-if (!require(pacman)) install.packages("pacman")
+# if (!require(pacman)) install.packages("pacman")
 
-pacman::p_load(
-  shiny,
-  shinydashboard,
-  httr,
-  jsonlite,
-  rlist,
-  dplyr,
-  purrr,
-  tidyr,
-  stringr,
-  tibble,
-  formattable
-)
+# pacman::p_load(
+#   shiny,
+#   shinydashboard,
+#   httr,
+#   jsonlite,
+#   rlist,
+#   dplyr,
+#   purrr,
+#   tidyr,
+#   stringr,
+#   tibble,
+#   formattable
+# )
 
 library(dplyr)
 library(shiny)
