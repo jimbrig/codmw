@@ -33,7 +33,7 @@ urls <- paste0(
 
 get_data <- function(url) {
 
-  resp <- GET(url)
+  # resp <- GET(url)
   jsonlite::fromJSON(url, simplifyDataFrame = TRUE, flatten = TRUE)[[2]]
   all_data_list <- jsonlite::fromJSON(content(resp, as = "text")) %>% pluck("data")
   all_data_list$lifetime$all$properties %>% set_names(names(.)) %>% as_tibble()
