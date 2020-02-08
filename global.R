@@ -20,6 +20,7 @@ library(jsonlite)
 library(purrr)
 library(tidyr)
 library(tibble)
+library(DT)
 # library(formattable)
 
 gamertags <- c("wherethenoobsat", "munchinxbox69", "BIJO44")
