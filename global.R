@@ -44,6 +44,11 @@ get_data <- function(url) {
 }
 
 stat_choices <- names(get_data(urls[1]))
+stat_choices <- map_chr(stat_choices, function(string) {
+  camel_2_title(string)
+})
+
+stat_choices <- sort(stat_choices)
 
 #
 #
