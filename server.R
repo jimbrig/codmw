@@ -27,8 +27,7 @@ shinyServer(function(input, output, session) {
 
   output$table <- DT::renderDataTable({
 
-    out <- data() %>%
-      mutate_at(vars(all_of(gamertags)), formattable::comma, digits = 2)
+    out <- data()
 
     DT::datatable(
       out,
