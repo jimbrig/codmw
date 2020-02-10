@@ -44,6 +44,9 @@ get_data <- function(url) {
 
 }
 
+# New shiny (1.4.0.9001) isn't sourcing in R directory (unsure why)
+source('R/camel_2_title.R', local = TRUE)
+
 stat_choices <- names(get_data(urls[1]))
 stat_choices <- map_chr(stat_choices, function(string) {
   camel_2_title(string)
