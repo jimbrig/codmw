@@ -25,6 +25,7 @@ library(DT)
 library(curl)
 library(httr)
 library(stringr)
+library(shinyWidgets)
 
 gamertags <- c("wherethenoobsat", "munchinxbox69", "BIJO44")
 

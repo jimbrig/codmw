@@ -28,9 +28,19 @@ shinyServer(function(input, output, session) {
 
   })
 
-  output$table <- DT::renderDataTable({
+  data_filter <- reactiveVal(NULL)
 
-    out <- data()
+  observeEvent(input$stat, {
+    out <- data() %>%
+      filter(stat %in% input$stat)
+
+    data_filter(out)
+  })
+
+  output$table <- DT::renderDataTable({
+    req(data_filter())
+
+    out <- data_filter()
 
     DT::datatable(
       out,
