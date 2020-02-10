@@ -26,11 +26,15 @@ shinyUI(fluidPage(
       fluidRow(
         column(
           3,
-          shinyWidgets::pickerInput(
+          pickerInput(
             "stat",
             label = "Select Stat:",
             choices = stat_choices,
-            selected = "currentWinStreak"
+            multiple = TRUE,
+            selected = stat_choices,
+            options = pickerOptions(
+              actionsBox = TRUE
+            )
           )
         )
       ),
