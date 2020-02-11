@@ -62,6 +62,7 @@ get_lifetime_data <- function(gamertags) {
     unnest_auto(lifetime_all) %>%
     janitor::clean_names() %>%
     select(gamertag,
+           current_win_streak,
            # level,
            kd_ratio,
            win_loss_ratio,
@@ -98,7 +99,8 @@ get_lifetime_data <- function(gamertags) {
            best_confirmed
     ) %>%
     pivot_longer(cols = -gamertag, names_to = "stat_name", values_to = "stat") %>%
-    pivot_wider(names_from = gamertag, values_from = stat)
+    pivot_wider(names_from = gamertag, values_from = stat) %>%
+    mutate(stat_name = str_replace_all(stat_name, "_", " ") %>% str_to_title())
 
   hold_lifetime_hc_dom <- hold %>% select(gamertag, level, lifetime_hc_dom) %>%
     unnest_auto(lifetime_hc_dom) %>%

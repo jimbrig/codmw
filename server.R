@@ -40,11 +40,12 @@ server <- function(input, output, session) {
       round(.,2)
 
     shinydashboard::infoBox(
-      gamertags[1],
+      "munchinxbox69",
       hold,
-      subtitle = "Stats",
+      subtitle = input$stat,
       icon = shiny::icon("gamepad"),
-      color = "black"
+      color = "black",
+      width = 12
     )
 
   })

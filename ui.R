@@ -79,12 +79,11 @@ body <- shinydashboard::dashboardBody(
               "stat",
               label = "Select Stat:",
               choices = stat_choices,
-              selected = stat_choices[1:3]
+              selected = "current_win_streak"
             )
           ),
 
-          column(8,
-
+          column(3,
                  shinydashboard::infoBoxOutput("valboxes")
           )
         ),

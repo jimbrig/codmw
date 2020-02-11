@@ -43,7 +43,5 @@ gamertags <- c(
 )
 
 stat_choices <- get_lifetime_data(gamertags[1])[["all"]] %>%
-  pull(stat_name) #%>%
-  # str_replace_all(., "_", " ") %>%
-  # str_to_title()
+  pull(stat_name)
 
