@@ -9,14 +9,7 @@
 
 # header ------------------------------------------------------------------
 header <- shinydashboard::dashboardHeader(
-
-  title = tags$a(
-    tags$img(
-      src = "img/codmw-logo.jpg",
-      width = 200,
-    ),
-    href = "#"
-  )
+  title = icon_text("xbox", "CODMW") #, # insert_logo("img/codmw-logo-alt.jpg", width = 200)
 )
 
 # sidebar -----------------------------------------------------------------
@@ -29,10 +22,8 @@ sidebar <- shinydashboard::dashboardSidebar(
     h5(
       icon_text("xbox", "Call of Duty Modern Warfare"),
     ),
-    br(),
     h5(
       icon_text("clock", "Data Last Updated as of:"),
-      br(),
       Sys.time()
     ),
     hr()
@@ -63,36 +54,68 @@ body <- shinydashboard::dashboardBody(
 
   shinydashboard::tabItem(
     tabName = "dash",
-    shinydashboard::tabBox(
-      id = "dash_tab",
-      title = icon_text("dashboard", "Dashbaord"),
-      width = 12,
-
-      shiny::tabPanel(
-        title = icon_text("calculator", "Gamer Stats"),
-        width = 12,
 
         fluidRow(
           column(
-            width = 4,
+            5,
+            shinydashboard::infoBoxOutput("statbox", width = 12)
+          ),
+          column(
+            width = 5,
             shinyWidgets::pickerInput(
               "stat",
-              label = "Select Stat:",
+              label = icon_text("calculator", "Select Stat:"),
               choices = stat_choices,
               selected = "current_win_streak"
+            ),
+            shinyWidgets::pickerInput(
+              "tag",
+              label = icon_text("xbox", "Select Gamertag:"),
+              choices = gamertags,
+              selected = gamertags[1]
             )
-          ),
-
-          column(3,
-                 shinydashboard::infoBoxOutput("valboxes")
           )
         ),
 
-        DT::dataTableOutput("table")
+        hr(),
+
+    shinydashboard::tabBox(
+      id = "data_tab",
+      title = icon_text("table", "Data"),
+      width = 12,
+
+      shiny::tabPanel(
+        title = "Lifetime Gamer Stats",
+        icon = shiny::icon("xbox"),
+
+
+        fluidRow(
+          column(
+            12,
+            DT::dataTableOutput("table")
+          )
+        )
+      ),
+
+      shiny::tabPanel(
+        title = "Stats by Game Mode",
+        icon = shiny::icon("gamepad"),
+        fluidRow(
+          column(
+            12,
+            shinyWidgets::pickerInput(
+              "mode",
+              label = icon_text("table", "Select Data Type:"),
+              choices = c("HC Domination" = "hc_dom", "HC Kill Confirmed" = "hc_conf"),
+              selected = c("HC Domination" = "hc_dom", "HC Kill Confirmed" = "hc_conf"),
+              multiple = TRUE
+            ),
+            DT::dataTableOutput("table_mode")
+          )
+        )
       )
     )
   )
-
 )
 
 shinydashboard::dashboardPage(

@@ -33,7 +33,7 @@ get_url <- function(gamertag) {
 #' @importFrom tibble as_tibble
 get_data <- function(gamertag) {
 
- get_url(gamertag) %>%
+  get_url(gamertag) %>%
     httr::GET() %>%
     httr::content(as = "text") %>%
     jsonlite::fromJSON() %>% #flatten = TRUE) %>%
@@ -127,6 +127,35 @@ get_lifetime_data <- function(gamertags) {
   )
 
   return(list("all" = hold_lifetime_all, "mode" = mode_data))
+
+}
+
+#' Insert Logo
+#'
+#' @param file
+#' @param style
+#' @param width
+#' @param ref
+#'
+#' @return
+#' @export
+#'
+#' @examples
+insert_logo <- function(file,
+                        style = "background-color: #FFF; width: 100%; height: 100%;",
+                        width = NULL,
+                        ref = "#"){
+
+  tags$div(
+    style = style,
+    tags$a(
+      img(
+        src = file,
+        width = width
+      ),
+      href = ref
+    )
+  )
 
 }
 

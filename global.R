@@ -25,12 +25,9 @@ library(httr)
 library(stringr)
 # library(formattable)
 
-library(jsonlite)
-library(purrr)
-library(dplyr)
 library(readr)
-library(stringr)
 library(magrittr)
+# library(formattable)
 
 # functions & modules
 source("R/utils.R")
