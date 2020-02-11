@@ -1,47 +1,105 @@
+
+#  ------------------------------------------------------------------------
 #
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
+# Title : UI
+#    By : Jimmy Briggs
+#  Date : 2020-02-10
 #
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
+#  ------------------------------------------------------------------------
 
-library(shiny)
+# header ------------------------------------------------------------------
+header <- shinydashboard::dashboardHeader(
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
+  title = tags$a(
+    tags$img(
+      src = "img/codmw-logo.jpg",
+      width = 200,
+    ),
+    href = "#"
+  )
+)
 
-  # Application title
-  titlePanel("COD"),
+# sidebar -----------------------------------------------------------------
+sidebar <- shinydashboard::dashboardSidebar(
 
-  # Sidebar with a slider input for number of bins
-  # sidebarLayout(
-  #   sidebarPanel(
-  #
-  #   ),
+  tags$div(
+    align = "center",
+    style = "font-weight: bold; color: #ffffff;",
+    hr(),
+    h5(
+      icon_text("xbox", "Call of Duty Modern Warfare"),
+    ),
+    br(),
+    h5(
+      icon_text("clock", "Data Last Updated as of:"),
+      br(),
+      Sys.time()
+    ),
+    hr()
+  ),
 
-    # Show a plot of the generated distribution
-    mainPanel(
-      fluidRow(
-        column(
-          3,
-          shinyWidgets::pickerInput(
-            "stat",
-            label = "Select Stat:",
-            choices = stat_choices,
-            selected = "currentWinStreak"
-          )
-        )
-      ),
-
-      fluidRow(
-        shiny::uiOutput("valboxes")
-      ),
-
-      DT::dataTableOutput("table")
-
-      # plotOutput("distPlot")
+  shinydashboard::sidebarMenu(
+    id = "sidebar_menus",
+    shinydashboard::menuItem(
+      "Dashbaord",
+      tabName = "dash",
+      icon = shiny::icon("dashboard"),
+      selected = TRUE
+    ),
+    shinydashboard::menuItem(
+      "Records",
+      tabName = "records",
+      icon = shiny::icon("trophy")
+    ),
+    shinydashboard::menuItem(
+      "Clan",
+      tabName = "clan",
+      icon = shiny::icon("users")
     )
   )
+)
+
+body <- shinydashboard::dashboardBody(
+
+  shinydashboard::tabItem(
+    tabName = "dash",
+    shinydashboard::tabBox(
+      id = "dash_tab",
+      title = icon_text("dashboard", "Dashbaord"),
+      width = 12,
+
+      shiny::tabPanel(
+        title = icon_text("calculator", "Gamer Stats"),
+        width = 12,
+
+        fluidRow(
+          column(
+            width = 4,
+            shinyWidgets::pickerInput(
+              "stat",
+              label = "Select Stat:",
+              choices = stat_choices,
+              selected = stat_choices[1:3]
+            )
+          ),
+
+          column(8,
+
+                 shinydashboard::infoBoxOutput("valboxes")
+          )
+        ),
+
+        DT::dataTableOutput("table")
+      )
+    )
+  )
+
+)
+
+shinydashboard::dashboardPage(
+  header = header,
+  sidebar = sidebar,
+  body = body,
+  title = "COD App",
+  skin = "black"
 )

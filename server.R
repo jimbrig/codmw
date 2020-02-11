@@ -1,30 +1,20 @@
-#
-# This is the server logic of a Shiny web application. You can run the
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
 
-library(shiny)
+#  ------------------------------------------------------------------------
+#
+# Title : Server
+#    By : Jimmy Briggs
+#  Date : 2020-02-10
+#
+#  ------------------------------------------------------------------------
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output, session) {
+server <- function(input, output, session) {
 
   data <- reactive({
 
     # browser()
 
-    map_dfr(urls, get_data) %>%
-      # tibble::add_column("gamer" = gamertags) %>%
-      # select(gamer, everything()) %>%
-      t() %>%
-      as_tibble(rownames = NA) %>%
-      tibble::rownames_to_column("Stat") %>%
-      set_names(c("stat", gamertags)) %>%
-      as_tibble() %>%
-      mutate(stat = camel_2_title(stat))
+    get_lifetime_data(gamertags)[["all"]]
 
   })
 
@@ -36,27 +26,28 @@ shinyServer(function(input, output, session) {
       out,
       style = "bootstrap"
     ) %>%
-      DT::formatRound(1:3, 2)
+      DT::formatRound(2:4, 2)
   })
 
 
 
-  output$valboxes <- shiny::renderUI({
+  output$valboxes <- shinydashboard::renderInfoBox({
 
-    vals <- data() %>%
-      filter(stat == input$stat) %>%
-      slice(1)
+    hold <- data() %>%
+      filter(stat_name == input$stat) %>%
+      slice(1) %>%
+      pull(2) %>%
+      round(.,2)
 
-    fluidRow(
-      column(4,
-             shinydashboard::valueBox(vals[1], subtitle = gamertags[1], icon = shiny::icon("gamepad"))
-      ),
-      column(4,
-             shinydashboard::valueBox(vals[2], subtitle = gamertags[2], icon = shiny::icon("gamepad"))
-      ),
-      column(4,
-             shinydashboard::valueBox(vals[3], subtitle = gamertags[3], icon = shiny::icon("gamepad"))
-      )
+    shinydashboard::infoBox(
+      gamertags[1],
+      hold,
+      subtitle = "Stats",
+      icon = shiny::icon("gamepad"),
+      color = "black"
     )
+
   })
-})
+
+}
+
