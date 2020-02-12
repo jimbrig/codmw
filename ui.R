@@ -54,7 +54,6 @@ body <- shinydashboard::dashboardBody(
 
   shinydashboard::tabItem(
     tabName = "dash",
-
         fluidRow(
           column(
             5,
@@ -72,23 +71,18 @@ body <- shinydashboard::dashboardBody(
               "tag",
               label = icon_text("xbox", "Select Gamertag:"),
               choices = gamertags,
-              selected = gamertags[1]
+              selected = gamertags[2]
             )
           )
         ),
-
         hr(),
-
     shinydashboard::tabBox(
       id = "data_tab",
       title = icon_text("table", "Data"),
       width = 12,
-
       shiny::tabPanel(
         title = "Lifetime Gamer Stats",
         icon = shiny::icon("xbox"),
-
-
         fluidRow(
           column(
             12,
@@ -96,7 +90,6 @@ body <- shinydashboard::dashboardBody(
           )
         )
       ),
-
       shiny::tabPanel(
         title = "Stats by Game Mode",
         icon = shiny::icon("gamepad"),
