@@ -5,9 +5,9 @@ account: jimbrig2011
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1780561
-bundleId: 2784119
+bundleId: 2793712
 url: https://jimbrig2011.shinyapps.io/codmw/
-when: 1581138768.82555
+when: 1581469820.27556
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: config.yaml|README.md|inst/devhist.R|www/custom-js.js|www/mystyles.css
+ignoredFiles: config.yaml|README.md|www/custom-js.js|www/mystyles.css|www/img/codmw-logo-alt.jpg|www/img/codmw-logo.jpg

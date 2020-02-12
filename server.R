@@ -1,30 +1,20 @@
-#
-# This is the server logic of a Shiny web application. You can run the
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
 
-library(shiny)
+#  ------------------------------------------------------------------------
+#
+# Title : Server
+#    By : Jimmy Briggs
+#  Date : 2020-02-10
+#
+#  ------------------------------------------------------------------------
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output, session) {
+server <- function(input, output, session) {
 
   data <- reactive({
 
     # browser()
 
-    map_dfr(urls, get_data) %>%
-      # tibble::add_column("gamer" = gamertags) %>%
-      # select(gamer, everything()) %>%
-      t() %>%
-      as_tibble(rownames = NA) %>%
-      tibble::rownames_to_column("Stat") %>%
-      set_names(c("stat", gamertags)) %>%
-      as_tibble() %>%
-      mutate(stat = camel_2_title(stat))
+    get_lifetime_data(gamertags)
 
   })
 
@@ -40,33 +30,58 @@ shinyServer(function(input, output, session) {
   output$table <- DT::renderDataTable({
     req(data_filter())
 
-    out <- data_filter()
+
+    out <- data()[["all"]] %>%
+      mutate_if(is.numeric, round, 2)
+
+    num_cols <- out %>% select_if(is.numeric) %>% names()
 
     DT::datatable(
       out,
+      rownames = FALSE,
+      colnames = c("Stat", gamertags),
       style = "bootstrap"
     ) %>%
-      DT::formatRound(1:3, 2)
+      DT::formatRound(num_cols, digits = 2)
   })
 
+  output$table_mode <- DT::renderDT({
 
+    out <- data()[["mode"]] %>%
+      mutate_if(is.numeric, round, 2) %>%
+      filter(mode %in% input[["mode"]]) %>%
+      select(mode, everything())
 
-  output$valboxes <- shiny::renderUI({
+    num_cols <- out %>% select_if(is.numeric) %>% names()
 
-    vals <- data() %>%
-      filter(stat == input$stat) %>%
-      slice(1)
+    DT::datatable(
+      out,
+      rownames = FALSE,
+      colnames = c("Mode", "Stat", gamertags),
+      style = "bootstrap"
+    ) %>%
+      DT::formatRound(num_cols, digits = 2)
 
-    fluidRow(
-      column(4,
-             shinydashboard::valueBox(vals[1], subtitle = gamertags[1], icon = shiny::icon("gamepad"))
-      ),
-      column(4,
-             shinydashboard::valueBox(vals[2], subtitle = gamertags[2], icon = shiny::icon("gamepad"))
-      ),
-      column(4,
-             shinydashboard::valueBox(vals[3], subtitle = gamertags[3], icon = shiny::icon("gamepad"))
-      )
+  })
+
+  output$statbox <- shinydashboard::renderInfoBox({
+
+    hold <- data()[["all"]] %>%
+      filter(stat_name == input$stat) %>%
+      slice(1) %>%
+      pull(input$tag) %>%
+      round(., digits = 2)
+
+    shinydashboard::infoBox(
+      title = input$tag,
+      value = hold,
+      subtitle = input$stat,
+      icon = shiny::icon("gamepad"),
+      color = "black",
+      width = 12
     )
+
   })
-})
+
+}
+
