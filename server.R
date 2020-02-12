@@ -21,8 +21,9 @@ server <- function(input, output, session) {
   data_filter <- reactiveVal(NULL)
 
   observeEvent(input$stat, {
-    out <- data() %>%
-      filter(stat %in% input$stat)
+
+    out <- data()$all %>%
+      filter(stat_name %in% input$stat)
 
     data_filter(out)
   })
