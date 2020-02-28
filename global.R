@@ -35,7 +35,8 @@ source("R/utils.R")
 gamertags <- c(
   "wherethenoobsat",
   "munchinxbox69",
-  "BIJO44"
+  "BIJO44",
+  "PeakyBlinderSWC"
 )
 
 stat_choices <- get_lifetime_data(gamertags[1])[["all"]] %>%
