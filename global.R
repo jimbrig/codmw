@@ -26,6 +26,7 @@ library(stringr)
 library(shinyWidgets)
 library(readr)
 library(magrittr)
+library(stringr)
 # library(formattable)
 
 # functions & modules
@@ -36,9 +37,13 @@ gamertags <- c(
   "wherethenoobsat",
   "munchinxbox69",
   "BIJO44",
-  "PeakyBlinderSWC"
+  "an%20angry%20hobo8",
+  "KiimJongAl"
 )
 
-stat_choices <- get_lifetime_data(gamertags[1])[["all"]] %>%
+gamertag_choices <- gamertags
+names(gamertag_choices) <- stringr::str_replace_all(gamertags, "%20", " ")
+
+stat_choices <- get_lifetime_data(gamertags[4])[["all"]] %>%
   pull(stat_name)
 
