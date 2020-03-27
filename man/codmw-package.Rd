@@ -4,12 +4,27 @@
 \name{codmw-package}
 \alias{codmw}
 \alias{codmw-package}
-\title{codmw: What the Package Does (One Line, Title Case)}
+\title{codmw: Call of Duty Modern Warfare Customized Shiny Application}
 \description{
-What the package does (one paragraph).
+CODMW is an R package and Shiny app that extracts,
+    tracks, stores, and facilitates Call of Duty statistics in real time.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jimbrig2011/codmw}
+  \item Report bugs at \url{https://github.com/jimbrig2011/codmw/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Jimmy Briggs \email{jimmy.briggs@oliverwyman.com}
+
+Other contributors:
+\itemize{
+  \item Mac Kitchen \email{w.mac.kitchin@gmail.com} [contributor]
+  \item The Documentalarialists Foundation, Inc. [funder]
+}
 
 }
 \keyword{internal}

@@ -16,6 +16,6 @@ tibble
 retrieve data from \url{https://my.callofduty.com} API by xbox gamertag
 }
 \examples{
-get_data(munchinxbox69)
+get_data("munchinxbox69")
 
 }

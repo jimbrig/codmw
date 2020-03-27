@@ -146,13 +146,60 @@ knitr::knit("README.Rmd")
 # other package components ------------------------------------------------
 usethis::use_news_md()
 usethis::use_code_of_conduct()
-usethis::use_mit_license(name = "Oliver Wyman Actuarial Consulting, Inc.")
-usethis::use_spell_check()
+usethis::use_mit_license(name = "The Documentalarialists Foundation, Inc.")
+# usethis::use_spell_check()
 # usethis::use_coverage()
 
-# golem shiny files
-golem::add_ui_server_files(pkg = getwd())
-golem::add_css_file("styles", getwd())
-golem::add_js_file("custom", getwd())
-golem::use_recommended_deps() # DT, glue, golem, shiny
-golem::use_recommended_tests()
+# # golem shiny files
+# golem::add_ui_server_files(pkg = getwd())
+# golem::add_css_file("styles", getwd())
+# golem::add_js_file("custom", getwd())
+# golem::use_recommended_deps() # DT, glue, golem, shiny
+# golem::use_recommended_tests()
+
+usethis::use_r("utils")
+usethis::use_r("run_app")
+usethis::use_r("header_buttons_module")
+
+usethis::use_data_raw("dataprep")
+
+
+usethis::use_vignette("overview")
+
+devtools::dev_sitrep()
+
+# attach to description
+attachment::att_to_description(
+  extra.suggests = c(
+    # "golem",
+    "attachment",
+    "testthat",
+    "roxygen2"
+  )
+)
+
+# dependencies file
+attachment::create_dependencies_file(to = "inst/scripts/dependencies.R")
+
+# document
+devtools::document()
+
+# tests / automations
+devtools::test()
+devtools::run_examples()
+# sinew::makeDictionary()
+
+# check
+devtools::check()
+# goodpractice::gp()
+# codetools::checkUsagePackage()
+
+# build
+devtools::build_vignettes()
+devtools::build()
+
+# install
+devtools::install()
+
+# release
+# devtools::release()

@@ -25,7 +25,8 @@ get_url <- function(gamertag) {
 #' @return tibble
 #' @export
 #'
-#' @examples get_data(munchinxbox69)
+#' @examples
+#' get_data("munchinxbox69")
 #'
 #' @importFrom httr GET content
 #' @importFrom jsonlite fromJSON
@@ -42,6 +43,12 @@ get_data <- function(gamertag) {
 }
 
 
+#' Get Lifetime Data
+#'
+#' @param gamertags tags
+#'
+#' @return r
+#' @export
 get_lifetime_data <- function(gamertags) {
 
 
@@ -132,15 +139,13 @@ get_lifetime_data <- function(gamertags) {
 
 #' Insert Logo
 #'
-#' @param file
-#' @param style
-#' @param width
-#' @param ref
+#' @param file f
+#' @param style s
+#' @param width w
+#' @param ref r
 #'
-#' @return
+#' @return r
 #' @export
-#'
-#' @examples
 insert_logo <- function(file,
                         style = "background-color: #FFF; width: 100%; height: 100%;",
                         width = NULL,

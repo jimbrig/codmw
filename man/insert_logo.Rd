@@ -28,7 +28,7 @@ insert_logo(
 \item{ref}{ref}
 }
 \value{
-
+r
 
 tag
 }
