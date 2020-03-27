@@ -81,7 +81,7 @@ server <- function(input, output, session) {
   output$statbox <- shinydashboard::renderInfoBox({
 
     hold <- data()[["all"]] %>%
-      filter(stat_name == input$stat) %>%
+      filter(stat_name == input$stat[1]) %>%
       slice(1) %>%
       pull(input$tag) %>%
       round(., digits = 2)
@@ -89,7 +89,45 @@ server <- function(input, output, session) {
     shinydashboard::infoBox(
       title = names(gamertag_choices)[match(input$tag, gamertags)],
       value = hold,
-      subtitle = input$stat,
+      subtitle = input$stat[1],
+      icon = shiny::icon("gamepad"),
+      color = "black",
+      width = 12
+    )
+
+  })
+
+  output$statbox2 <- shinydashboard::renderInfoBox({
+
+    hold <- data()[["all"]] %>%
+      filter(stat_name == input$stat[2]) %>%
+      slice(1) %>%
+      pull(input$tag) %>%
+      round(., digits = 2)
+
+    shinydashboard::infoBox(
+      title = names(gamertag_choices)[match(input$tag, gamertags)],
+      value = hold,
+      subtitle = input$stat[2],
+      icon = shiny::icon("gamepad"),
+      color = "black",
+      width = 12
+    )
+
+  })
+
+  output$statbox3 <- shinydashboard::renderInfoBox({
+
+    hold <- data()[["all"]] %>%
+      filter(stat_name == input$stat[3]) %>%
+      slice(1) %>%
+      pull(input$tag) %>%
+      round(., digits = 2)
+
+    shinydashboard::infoBox(
+      title = names(gamertag_choices)[match(input$tag, gamertags)],
+      value = hold,
+      subtitle = input$stat[3],
       icon = shiny::icon("gamepad"),
       color = "black",
       width = 12

@@ -53,28 +53,42 @@ sidebar <- shinydashboard::dashboardSidebar(
 body <- shinydashboard::dashboardBody(
   shinydashboard::tabItem(
     tabName = "dash",
-        fluidRow(
-          column(
-            5,
-            shinydashboard::infoBoxOutput("statbox", width = 12)
-          ),
-          column(
-            width = 5,
-            shinyWidgets::pickerInput(
-              "stat",
-              label = icon_text("calculator", "Select Stat:"),
-              choices = stat_choices,
-              selected = "current_win_streak"
-            ),
-            shinyWidgets::pickerInput(
-              "tag",
-              label = icon_text("xbox", "Select Gamertag:"),
-              choices = gamertag_choices,
-              selected = gamertags[2]
-            )
+    box(
+      title = "Stat Selector:",
+      width = 12,
+      collapsible = TRUE,
+      fluidRow(
+        column(
+          6,
+          shinyWidgets::pickerInput(
+            "stat",
+            label = icon_text("calculator", "Select Stats:"),
+            choices = stat_choices,
+            multiple = TRUE,
+            selected = stat_choices[c(1:3)]
           )
         ),
-        hr(),
+        column(
+          6,
+          shinyWidgets::pickerInput(
+            "tag",
+            label = icon_text("xbox", "Select Gamertag:"),
+            choices = gamertag_choices,
+            selected = gamertags[2]
+          )
+        )
+      ),
+      hr(),
+      fluidRow(
+        column(
+          12,
+          shinydashboard::infoBoxOutput("statbox", width = 4),
+          shinydashboard::infoBoxOutput("statbox2", width = 4),
+          shinydashboard::infoBoxOutput("statbox3", width = 4)
+        )
+      )
+    ),
+    hr(),
     shinydashboard::tabBox(
       id = "data_tab",
       title = icon_text("table", "Data"),
@@ -106,8 +120,19 @@ body <- shinydashboard::dashboardBody(
           )
         )
       )
+    ),
+
+    fluidRow(
+      box(
+        title = "WELCOME!",
+        collapsible = TRUE,
+        collapsed = FALSE,
+        width = 12,
+        shiny::includeMarkdown("welcome.md")
+      )
     )
   ),
+
   setBackgroundImage(
     src = "img/codmw_background_3.jpeg",
     shinydashboard = TRUE
@@ -118,6 +143,6 @@ shinydashboard::dashboardPage(
   header = header,
   sidebar = sidebar,
   body = body,
-  title = "COD App",
+  title = "DocZees Call of Duty Tracker App",
   skin = "black"
 )
