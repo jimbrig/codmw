@@ -69,7 +69,7 @@ body <- shinydashboard::dashboardBody(
             shinyWidgets::pickerInput(
               "tag",
               label = icon_text("xbox", "Select Gamertag:"),
-              choices = gamertags,
+              choices = gamertag_choices,
               selected = gamertags[2]
             )
           )

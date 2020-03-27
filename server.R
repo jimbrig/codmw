@@ -40,8 +40,15 @@ server <- function(input, output, session) {
     DT::datatable(
       out,
       rownames = FALSE,
-      colnames = c("Stat", gamertags),
-      style = "bootstrap"
+      caption = "Al is a  N00b.",
+      colnames = c("Stat", stringr::str_replace_all(gamertags, "%20", " ")),
+      style = "bootstrap",
+      extensions = c("ColReorder", "Buttons"),
+      options = list(
+        dom = 'Bfrtip',
+        buttons = c('copy', 'csv', 'excel', 'pdf', 'print', I('colvis')),
+        list(colReorder = TRUE)
+      )
     ) %>%
       DT::formatRound(num_cols, digits = 2)
   })
@@ -58,9 +65,15 @@ server <- function(input, output, session) {
     DT::datatable(
       out,
       rownames = FALSE,
-      colnames = c("Mode", "Stat", gamertags),
-      style = "bootstrap"
-    ) %>%
+      colnames = c("Mode", "Stat", stringr::str_replace_all(gamertags, "%20", " ")),
+      style = "bootstrap",
+      caption = "Al is a  N00b.",
+      extensions = c("Responsive", "ColReorder", "Buttons"),
+      options = list(
+        dom = 'Bfrtip',
+        buttons = c('copy', 'csv', 'excel', 'pdf', 'print', I('colvis')),
+        list(colReorder = TRUE)
+      )) %>%
       DT::formatRound(num_cols, digits = 2)
 
   })
@@ -74,7 +87,7 @@ server <- function(input, output, session) {
       round(., digits = 2)
 
     shinydashboard::infoBox(
-      title = input$tag,
+      title = names(gamertag_choices)[match(input$tag, gamertags)],
       value = hold,
       subtitle = input$stat,
       icon = shiny::icon("gamepad"),
