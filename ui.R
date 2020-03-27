@@ -51,7 +51,6 @@ sidebar <- shinydashboard::dashboardSidebar(
 )
 
 body <- shinydashboard::dashboardBody(
-
   shinydashboard::tabItem(
     tabName = "dash",
         fluidRow(
@@ -108,6 +107,10 @@ body <- shinydashboard::dashboardBody(
         )
       )
     )
+  ),
+  setBackgroundImage(
+    src = "img/codmw_background_3.jpeg",
+    shinydashboard = TRUE
   )
 )
 
