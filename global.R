@@ -27,6 +27,9 @@ library(shinyWidgets)
 library(readr)
 library(magrittr)
 library(stringr)
+library(markdown)
+library(rmarkdown)
+library(knitr)
 # library(formattable)
 
 # functions & modules
