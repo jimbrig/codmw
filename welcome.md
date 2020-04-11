@@ -59,6 +59,12 @@ shiny application for use by the **DocZees Regiment**.
 
 ***
 
+### Links
+
+Visit the [GitHub Repository](https://github.com/jimbrig2011/codmw) to view code or report bugs/feature requests.
+
+Visit the Regiments [YouTube Channel](https://www.youtube.com/channel/UCovK7IiXrhewBjb-ZZtKOig/featured) to view and upload pwnage vids.
+
 ### Contributing
 
 Please note that the **CODMW** project is released with a [Contributor

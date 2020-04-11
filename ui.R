@@ -126,19 +126,18 @@ body <- shinydashboard::dashboardBody(
             )
           )
         )
+      ),
+
+      fluidRow(
+        box(
+          title = "WELCOME!",
+          collapsible = TRUE,
+          collapsed = FALSE,
+          width = 12,
+          htmltools::includeMarkdown("welcome.md")
+        )
       )
     ),
-
-    # fluidRow(
-    #   box(
-    #     title = "WELCOME!",
-    #     collapsible = TRUE,
-    #     collapsed = FALSE,
-    #     width = 12,
-    #     htmltools::includeMarkdown("welcome.Rmd")
-    #   )
-    # )
-    # ),
     tabItem(
       tabName = "videos",
       fluidRow(
@@ -150,31 +149,36 @@ body <- shinydashboard::dashboardBody(
             tabPanel(
               title = "Recently Uploaded:",
               fluidRow(
-                box(
-                  background = "black",
-                  width = 6,
-                  title = "MACE2DAFACE",
-                  footer = "Uploaded by: Munchy",
-                  HTML('<iframe width="700" height="315"
+                column(12,
+                       box(
+                         background = "black",
+                         width = 6,
+                         title = "MACE2DAFACE",
+                         footer = "Uploaded by: Munchy",
+                         HTML('<iframe width="100%" height="315"
            src="https://www.youtube.com/embed/O05UqXBu68k" frameborder="0"
            allow="accelerometer; autoplay; encrypted-media; gyroscope;
            picture-in-picture" allowfullscreen></iframe>')
-                ),
-                box(
-                  background = "black",
-                  width = 6,
-                  title = "CHOPPERDOWN",
-                  footer = "Uploaded by: KimithJongith",
-                  HTML('<iframe width="700" height="315"
+                       ),
+                       box(
+                         background = "black",
+                         width = 6,
+                         title = "CHOPPERDOWN",
+                         footer = "Uploaded by: KimithJongith",
+                         HTML('<iframe width="100%" height="315"
            src="https://www.youtube.com/embed/SpfZ3FW5Lzo"
            frameborder="0" allow="accelerometer; autoplay;
            encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>')
+                       )
+                ),
+                fluidRow(
+                  div(
+                    style = "text-align: center",
+                    shiny::actionButton("upload_video", label = "Upload a Video"),
+                    tags$a(h3("Official DocZees Video Channel"),
+                           href = "https://www.youtube.com/channel/UCovK7IiXrhewBjb-ZZtKOig/")
+                  )
                 )
-              ),
-              div(
-                style = "text-align: center",
-                tags$a(h1("Official DocZees Video Channel"),
-                       href = "https://www.youtube.com/channel/UCovK7IiXrhewBjb-ZZtKOig/")
               )
             )
           )

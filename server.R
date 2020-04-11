@@ -135,5 +135,34 @@ server <- function(input, output, session) {
 
   })
 
+  observeEvent(input$upload_video, {
+
+    shinyWidgets::inputSweetAlert(
+      session = session,
+      "newvid",
+      title = "How to Upload a New Pwnage Vid:",
+      text = "To upload your own pwnage vid visit the offical DocZees YouTube Channel and upload a video. Then paste the video's URL below.",
+      type = "textarea",
+      inputPlaceholder = "https://www.youtube.com/<path-to-your-video/",
+      reset_input = TRUE
+    )
+
+    # showModal(
+    #   modalDialog(
+    #     title = "How to Upload a New Pwnage Vid:",
+    #
+    #     textAreaInput("newvid", "HTML code from YouTube:",
+    #                   placeholder = "https://www.youtube.com/<path-to-your-video/",
+    #                   width = "80%",
+    #                   height = "250px",
+    #                   resize = TRUE),
+    #     tags$a(h3("Link to DocZees Video Channel"),
+    #            href = "https://www.youtube.com/channel/UCovK7IiXrhewBjb-ZZtKOig/"),
+    #     easyClose = TRUE,
+    #     footer = "Never Forget: Al is a N00b."
+    #   )
+    # )
+  })
+
 }
 
