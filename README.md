@@ -18,6 +18,8 @@ Author: Jimmy Briggs - Regiment Officer - Email:
 <jimbrig2011@gmail.com>  
 Last compiled on **March 26, 2020**
 
+Visit the [Official YouTube Channel](https://www.youtube.com/channel/UCovK7IiXrhewBjb-ZZtKOig/featured) for pwnage vids.
+
 -----
 
 </center>
