@@ -31,6 +31,8 @@ sidebar <- shinydashboard::dashboardSidebar(
 
   shinydashboard::sidebarMenu(
     id = "sidebar_menus",
+    shiny::selectInput("game", "Select Game:", choices = c("Modern Warefare" = "mw", "Black Ops Cold War" = "bo"), selected = "bo") %>%
+      shinyjs::disabled(),
     shinydashboard::menuItem(
       "Dashbaord",
       tabName = "dash",

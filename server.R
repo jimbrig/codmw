@@ -10,17 +10,21 @@
 # Define server logic required to draw a histogram
 server <- function(input, output, session) {
 
+  # observeEvent(input$game, {
+
+  # })
+
   data <- reactive({
 
     # browser()
 
-    get_lifetime_data(gamertags)
+    get_lifetime_data(gamertags, input$game)
 
   })
 
   data_filter <- reactiveVal(NULL)
 
-  observeEvent(input$stat, {
+  observeEvent(list(input$stat, data()), {
 
     out <- data()$all %>%
       filter(stat_name %in% input$stat)
@@ -29,7 +33,7 @@ server <- function(input, output, session) {
   })
 
   output$table <- DT::renderDataTable({
-    req(data_filter())
+    req(data_filter(), data())
 
 
     out <- data()[["all"]] %>%
@@ -45,7 +49,7 @@ server <- function(input, output, session) {
       style = "bootstrap",
       extensions = c("ColReorder", "Buttons"),
       options = list(
-        dom = 'Bfrtip',
+        dom = 'Bfrltip',
         buttons = c('copy', 'csv', 'excel', 'pdf', 'print', I('colvis')),
         list(colReorder = TRUE)
       )
@@ -79,6 +83,8 @@ server <- function(input, output, session) {
   })
 
   output$statbox <- shinydashboard::renderInfoBox({
+
+    req(data())
 
     hold <- data()[["all"]] %>%
       filter(stat_name == input$stat[1]) %>%
