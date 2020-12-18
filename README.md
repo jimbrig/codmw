@@ -13,6 +13,10 @@ WIP](https://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.or
 
 API: https://app.swaggerhub.com/apis/jimbrig/COD/0.1
 
+Black Ops Cold War API URL: <https://my.callofduty.com/api/papi-client/stats/cod/v1/title/cw/platform/xbl/gamer/<xboxprofile>/profile/type/mp>
+
+Modern Warfare API URL: <https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/xbl/gamer/<gamertag>/profile/type/mp>
+
 <center>
 
 Copyright **DocZees** Regiment, All Rights Reserved, 2020  
