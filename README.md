@@ -11,6 +11,8 @@ WIP](https://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.or
 
 -----
 
+API: https://app.swaggerhub.com/apis/jimbrig/COD/0.1
+
 <center>
 
 Copyright **DocZees** Regiment, All Rights Reserved, 2020  
