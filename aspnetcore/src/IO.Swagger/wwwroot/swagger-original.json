@@ -1,0 +1,30 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "defaultTitle",
+    "description" : "defaultDescription",
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "https://my.callofduty.com"
+  } ],
+  "paths" : {
+    "/api/papi-client/stats/cod/v1/title/cw/platform/xbl/gamer/munchinxbox69/profile/type/mp" : {
+      "get" : {
+        "description" : "Auto generated using Swagger Inspector",
+        "responses" : {
+          "200" : {
+            "description" : "Auto generated using Swagger Inspector"
+          }
+        },
+        "servers" : [ {
+          "url" : "https://my.callofduty.com"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "https://my.callofduty.com"
+      } ]
+    }
+  },
+  "components" : { }
+}
